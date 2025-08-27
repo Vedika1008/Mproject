@@ -1,0 +1,12 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container mt-5">
+  <h3>Add Member to "<%= group.name %>"</h3>
+  <form action="/listings/groups/<%= group._id %>/add-member" method="POST" class="mt-3">
+    <div class="mb-3">
+      <label for="username" class="form-label">Enter Username</label>
+      <input type="text" name="username" class="form-control" id="username" required>
+    </div>
+    <button class="btn btn-dark">Add Member</button>
+  </form>
+</div>

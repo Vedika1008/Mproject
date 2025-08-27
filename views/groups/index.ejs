@@ -1,0 +1,45 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-8 text-center">
+      <h2>My Groups</h2>
+
+      <!-- Create Group button below heading -->
+      <a href="/listings/groups/new" class="btn btn-dark mt-3">
+        + Create Group
+      </a>
+    </div>
+  </div>
+
+  <div class="row mt-4 justify-content-center">
+    <% if (groups.length === 0) { %>
+      <div class="col-8 text-center mt-3">
+        <p>You have not created or joined any groups yet.</p>
+      </div>
+    <% } else { %>
+<% for (let group of groups) { %>
+  <div class="col-8 mb-3">
+    <div class="card shadow-sm border-0 rounded">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <a href="/listings/groups/<%= group._id %>" 
+             class="text-decoration-none text-dark fw-bold fs-5">
+            <%= group.name %>
+          </a>
+        </div>
+        <!-- 🆕 Delete button -->
+        <form action="/listings/groups/<%= group._id %>?_method=DELETE" method="POST" class="d-inline">
+          <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this group?')">
+            <i class="fa fa-trash"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+<% } %>
+
+
+    <% } %>
+  </div>
+</div>

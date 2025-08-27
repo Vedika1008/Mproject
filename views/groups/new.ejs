@@ -1,0 +1,16 @@
+<% layout("layouts/boilerplate") -%>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>Create a New Group</h2>
+      <form action="/listings/groups" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Group Name</label>
+          <input type="text" class="form-control" id="name" name="group[name]" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Create Group</button>
+      </form>
+    </div>
+  </div>
+</div>
