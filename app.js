@@ -82,7 +82,9 @@ app.use((req,res,next)=>{
   next();
 })
 // console.log("groupRoutes loaded:", typeof groupRoutes);
-
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 app.use("/listings/groups", groupRoutes);
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter)
