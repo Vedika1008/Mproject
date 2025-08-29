@@ -23,8 +23,11 @@ module.exports.showListing= async(req,res)=>{
     req.flash("error","Listing You requested for does not exist");
     return res.redirect("/listings");
   }
-  const userGroups = await Group.find({ members: req.user._id });
-  res.render("listings/show.ejs",{listing,userGroups})
+let userGroups = [];
+    if (req.user) {
+        userGroups = await Group.find({ members: req.user._id });
+    }  
+    res.render("listings/show.ejs",{listing,userGroups})
 };
 
 module.exports.createListing=async(req,res)=>{
@@ -63,6 +66,8 @@ module.exports.updateListing=async(req,res)=>{
  req.flash("success","Listing Updated!");
  res.redirect(`/listings/${id}`)
 };
+
+
 module.exports.destroyListing=async(req,res)=>{
   let {id} =req.params;
   let deletedListing= await Listing.findByIdAndDelete(id);
